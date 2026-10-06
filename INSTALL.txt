@@ -1,0 +1,19 @@
+Laser Sentry Cooldown v1.0
+Supports Helldivers 2 Steam build 25480438 / EXE 1.8.46015.0.
+
+Install Bingus Shared Loader v18 or newer and import this ZIP into Arsenal or
+HD2MM. Enable and deploy both, then restart Helldivers 2. Keep the shared
+loader as the winning Wwise startup replacement.
+
+What it changes, for the A/LAS-98 Laser Sentry only:
+- At max heat it overheats and stops firing as usual, but instead of burning
+  out it cools at its normal rate (about 50 s from max heat on a normal
+  planet) and then fires again.
+- As with other lasers that recover, it also cools a little while its beam
+  powers up or winds down (up to about 3.5 of 250 heat per burst).
+No options and no new numbers: every value is the sentry's own game data.
+Heat build-up while firing, idle cooling, damage and targeting are unchanged.
+
+Log: %LOCALAPPDATA%/CowboyBingus/Helldivers2/Logs/LaserSentryCooldown.log
+
+https://github.com/CowboyBingus/BingusSharedLoader/releases/latest

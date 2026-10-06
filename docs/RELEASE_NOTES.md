@@ -1,0 +1,9 @@
+- At max heat the Laser Sentry overheats and stops firing as usual, then cools at its normal rate and fires again, instead of burning out.
+- No options and no new numbers: the cooldown uses the sentry's own cooling rate (5 heat/s, about 50 s from max heat on a normal planet).
+- One 5-byte change to the Laser Sentry's heat record when the game starts; no work per frame afterwards.
+- The record and its page are checked before the write, and the page's read-only protection is put back at once.
+- An error in the game's update or another mod restores the original values until 60 clean frames have passed.
+- Steam build 25480438 only; requires Bingus Shared Loader v18 or newer.
+- Played in missions with the change in place throughout; an overheat followed by the cooldown has not been captured in a log yet.
+- Measured in live play: 0.002 ms per frame in missions and on the ship.
+- Licensed under the Zero-Clause BSD license (0BSD).
