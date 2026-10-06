@@ -22,5 +22,6 @@
   "tests/hostile_vm.lua",
   "tests/test_adapter.lua",
   "tests/test_cooldown.lua",
-  "tests/test_hooks.lua"
+  "tests/test_hooks.lua",
+  "tests/test_turret.lua"
 ]
