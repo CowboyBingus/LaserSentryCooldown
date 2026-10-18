@@ -20,8 +20,10 @@
   "tests/game_lua.py",
   "tests/heat_fixture.lua",
   "tests/hostile_vm.lua",
+  "tests/reference/laser_sentry_cooldown.lua",
   "tests/test_adapter.lua",
   "tests/test_cooldown.lua",
+  "tests/test_equivalence.lua",
   "tests/test_hooks.lua",
   "tests/test_turret.lua"
 ]

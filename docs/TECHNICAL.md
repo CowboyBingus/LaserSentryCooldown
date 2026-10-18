@@ -176,12 +176,12 @@ the resume, after 60 clean frames, writes the change again. A stop restores; shu
 `tests/test_cooldown.lua` and `tests/test_turret.lua` pin these counts per scenario with
 `tests/frame_budget.lua`, and check that idle frames and looks allocate nothing and create no C types (also
 after a JIT flush, and while a sentry cools). The watch reads into one reused 2 KB buffer (`api.view`, decoded in
-place through `api.bytes` / `api.words`) and keeps its few tables after they have grown once. Only the per-frame
-step, a frame counter, can be compiled: every other function of the addon, the helpers and the adapter's calls
-included, is marked interpreted (`jit.off`, recursively), so none of it becomes a trace in the code cache the
-game and every mod share. LuaJIT's only work for the look is one-time per session: it tries to compile the
-step's look branch four times (every 10 looks), then leaves it to the interpreter with one small stub trace
-(seen with `-jv`). Measured in live play with v1.0 and the frame probe of Bingus Shared Loader's development
+place through `api.bytes` / `api.words`) and keeps its few tables after they have grown once. Every function of
+the addon, the per-frame step, the helpers and the adapter's calls included, is marked interpreted (`jit.off`,
+recursively), so none of it becomes a trace in the code cache the game and every mod share. The step (a frame
+counter, about 10 bytecodes) runs under the update guard's `pcall`; in the game's `lua51.dll` a trace started in
+it aborts when it returns into that frame ("NYI: return to lower frame"), so left to the compiler it was only a
+trace start that kept aborting (28 aborts in a game-shaped replay of the standard tape). Measured in live play with v1.0 and the frame probe of Bingus Shared Loader's development
 build: 0.002 ms per frame in missions and on the ship (the update guard alone). The turret watch has not been
 measured in game yet.
 
@@ -208,6 +208,10 @@ measured in game yet.
   behavior or entity, an unexpected map, an image page), zero allocation, and the live test build's turret
   log. The behavior map's slots are computed with an exact 32-bit product, independently of
   the addon's arithmetic.
+- `tests/test_equivalence.lua`: the published v1.1 code (`tests/reference/`) and the current code side by side
+  over 3,200 scripted frames (menus, ship, a mission with overheats, a power-up, a refused power-up, a sentry
+  removed while it cools, a pause and resume, back to the ship and the menus), comparing every call, write, log
+  line, record byte and turret state on every frame.
 - `tests/test_hooks.lua`: the live test build's log (below): a sentry that overheats and recovers, one lost while
   overheated, another heat weapon that is ignored, and the record check.
 - `tests/compile_entry.lua`: the assembled release and test entries compile.
@@ -246,7 +250,7 @@ cost was not measured (no frame probe).
 
 ## Live test
 
-The live test build (`python -B scripts/build.py --test`, `build/Laser-Sentry-Cooldown-v1.1-test.zip`, never
+The live test build (`python -B scripts/build.py --test`, `build/Laser-Sentry-Cooldown-v1.1.1-test.zip`, never
 published) behaves exactly like the release (no options, no other change) and adds `src/test_hooks.lua`, which
 only reads:
 

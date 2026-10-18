@@ -1,3 +1,7 @@
+# v1.1.1
+
+- The mod's per-frame code no longer makes the game's Lua compiler retry compiling it every frame; such retries from many mods kept the game recompiling indefinitely.
+
 # v1.1
 
 - At max heat the Laser Sentry no longer explodes: the game's overheat ability for it, an effect and then an explosion at the sentry itself, is turned off.

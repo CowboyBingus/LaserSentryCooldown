@@ -1,4 +1,4 @@
-Laser Sentry Cooldown v1.1
+Laser Sentry Cooldown v1.1.1
 Supports Helldivers 2 Steam build 25480438 / EXE 1.8.46015.0.
 
 Install Bingus Shared Loader v18 or newer and import this ZIP into Arsenal or

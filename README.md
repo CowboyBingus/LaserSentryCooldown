@@ -1,4 +1,4 @@
-# Laser Sentry Cooldown v1.1
+# Laser Sentry Cooldown v1.1.1
 
 The A/LAS-98 Laser Sentry no longer blows itself up. When it reaches max heat it overheats as usual, with the
 game's own overheat sounds, and stops firing. It then cools down at the same rate it already cools at between
@@ -92,7 +92,7 @@ measured in game yet; from the per-call costs it adds well under 0.001 ms per fr
 ## Build and test
 
 `python -B scripts/build.py` runs every test in a LuaJIT and in the game's own `lua51.dll`, then builds
-`releases/Laser-Sentry-Cooldown-v1.1.zip`. `--test` also builds the live test build, which behaves the same and
+`releases/Laser-Sentry-Cooldown-v1.1.1.zip`. `--test` also builds the live test build, which behaves the same and
 only adds a log (never publish it). The reported cases are tests that stay: the v1.0 explosion
 (`tests/test_cooldown.lua`) and the turret that never came back online (`tests/test_turret.lua`).
 
